@@ -4,12 +4,15 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: "Lato", sans-serif;
   background-color: #f4ecd8;
   color: #2c1e16;
+  text-size-adjust: 100%;
 }
 
 h1,

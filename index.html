@@ -13,6 +13,15 @@
   </head>
   <body class="bg-[#F4ECD8] text-[#2C1E16]">
     <div id="root"></div>
+    <script>
+      (function () {
+        var base = "/Kisah-Klasik-Kopi/";
+        var hasHash = window.location.hash && window.location.hash !== "#";
+        if (!hasHash && window.location.pathname.endsWith(base)) {
+          window.location.replace(base + "#/");
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

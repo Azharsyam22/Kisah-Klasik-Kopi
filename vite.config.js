@@ -1,8 +1,10 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+﻿import process from "node:process";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
+const isProd = process.env.NODE_ENV === "production";
+
 export default defineConfig({
   plugins: [react()],
-  base: '/Kisah-Klasik-Kopi/', // <-- WAJIB SESUAI NAMA REPO GITHUB KAMU, JANGAN LUPA GARIS MIRING DI AWAL DAN AKHIR
-})
+  base: isProd ? "/Kisah-Klasik-Kopi/" : "/",
+});
