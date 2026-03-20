@@ -13,6 +13,7 @@ body {
   background-color: #f4ecd8;
   color: #2c1e16;
   text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 h1,
@@ -47,4 +48,19 @@ h5 {
 
 .hero-animate {
   animation: heroFadeUp 900ms ease both;
+}
+
+@media (max-width: 389px) {
+  .hero-copy h1 {
+    font-size: 2.25rem;
+    line-height: 1.15;
+  }
+
+  .hero-copy p {
+    font-size: 0.95rem;
+  }
+
+  .hero-copy .hero-kicker {
+    letter-spacing: 0.2em;
+  }
 }

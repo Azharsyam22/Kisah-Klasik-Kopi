@@ -38,10 +38,10 @@ function Navbar({ scrolled, menuOpen, onToggle, onClose }) {
         scrolled ? "bg-[#F4ECD8]/95 shadow-md backdrop-blur" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
         <NavLink
           to="/"
-          className="text-2xl font-bold text-[#8C6239]"
+          className="text-xl font-bold text-[#8C6239] sm:text-2xl"
           aria-label="Kisah Klasik Kopi"
           onClick={onClose}
         >
@@ -73,7 +73,7 @@ function Navbar({ scrolled, menuOpen, onToggle, onClose }) {
         </button>
       </div>
       {menuOpen && (
-        <div className="md:hidden border-t border-[#E3D4B9] bg-[#F4ECD8] px-6 py-4 shadow-sm">
+        <div className="md:hidden border-t border-[#E3D4B9] bg-[#F4ECD8] px-4 py-4 shadow-sm sm:px-6">
           <div className="flex flex-col gap-3 font-semibold">
             <NavLink className={navLinkClass} to="/" onClick={onClose}>
               Beranda
@@ -97,10 +97,10 @@ function Navbar({ scrolled, menuOpen, onToggle, onClose }) {
 function Footer() {
   return (
     <footer className="bg-[#2C1E16] text-[#F4ECD8] py-10 text-center">
-      <h2 className="text-2xl font-serif mb-2 text-[#8C6239]">
+      <h2 className="text-xl font-serif mb-2 text-[#8C6239] sm:text-2xl">
         Kisah Klasik Kopi
       </h2>
-      <p className="font-sans opacity-75">
+      <p className="font-sans opacity-75 text-sm sm:text-base">
         © 2026 Kisah Klasik Kopi. All rights reserved.
       </p>
     </footer>
@@ -110,44 +110,44 @@ function Footer() {
 function HomePage() {
   return (
     <main className="pt-20">
-      <section className="relative flex h-[92vh] items-center justify-center text-center">
+      <section className="relative flex min-h-[80vh] items-center justify-center text-center sm:min-h-[88vh] md:h-[92vh]">
         <div className="absolute inset-0 bg-black/60 z-10" />
         <img
           src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1920&auto=format&fit=crop"
           alt="Suasana Coffeeshop"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="relative z-20 hero-animate text-[#F4ECD8] p-4 max-w-3xl">
-          <p className="text-sm uppercase tracking-[0.5em] text-[#C19A6B] mb-4">
+        <div className="relative z-20 hero-animate text-[#F4ECD8] p-4 max-w-3xl hero-copy">
+          <p className="hero-kicker text-xs uppercase tracking-[0.3em] text-[#C19A6B] mb-4 sm:text-sm sm:tracking-[0.5em]">
             Kisah Klasik Kopi
           </p>
-          <h1 className="text-5xl md:text-7xl mb-6 drop-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6 drop-shadow-lg">
             Kisah Klasik Kopi
           </h1>
-          <p className="text-lg md:text-2xl mb-10 opacity-90">
+          <p className="text-base sm:text-lg md:text-2xl mb-10 opacity-90">
             Menyeduh cerita dan kenangan dalam setiap cangkir.
           </p>
           <NavLink
             to="/menu"
-            className="inline-flex items-center justify-center bg-[#8C6239] hover:bg-[#C19A6B] text-[#F4ECD8] px-10 py-4 rounded-full font-bold text-lg transition duration-300 shadow-lg"
+            className="inline-flex items-center justify-center bg-[#8C6239] hover:bg-[#C19A6B] text-[#F4ECD8] px-8 py-3 rounded-full font-bold text-base transition duration-300 shadow-lg sm:px-10 sm:py-4 sm:text-lg"
           >
             Jelajahi Rasa
           </NavLink>
         </div>
       </section>
 
-      <section className="container mx-auto px-6 py-24 flex flex-col md:flex-row items-center gap-16">
+      <section className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-12 sm:px-6 sm:py-24">
         <div className="md:w-1/2 reveal">
-          <h2 className="text-4xl font-serif text-[#8C6239] mb-6">
+          <h2 className="text-3xl font-serif text-[#8C6239] mb-6 sm:text-4xl">
             Cerita yang Menghangatkan
           </h2>
-          <p className="text-lg leading-relaxed mb-6 opacity-80">
+          <p className="text-base leading-relaxed mb-6 opacity-80 sm:text-lg">
             Kisah Klasik Kopi lahir dari kerinduan pada ritual sederhana: aroma
             panggang, suara seduhan, dan waktu yang berjalan pelan. Kami
             menghadirkan ruang hangat untuk bertemu, bercerita, dan mengisi ulang
             energi.
           </p>
-          <p className="text-lg leading-relaxed opacity-80">
+          <p className="text-base leading-relaxed opacity-80 sm:text-lg">
             Setiap detail dirancang untuk memikat minat pelanggan — dari
             penyajian, musik latar, hingga keramahan barista yang mengajak Anda
             kembali lagi.
@@ -162,15 +162,15 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#EAE0CC] py-24">
-        <div className="container mx-auto px-6 text-center">
+      <section className="bg-[#EAE0CC] py-16 sm:py-24">
+        <div className="container mx-auto px-4 text-center sm:px-6">
           <p className="text-sm uppercase tracking-[0.4em] text-[#8C6239] mb-4">
             Pengalaman
           </p>
-          <h2 className="text-4xl font-serif text-[#8C6239] mb-6 reveal">
+          <h2 className="text-3xl font-serif text-[#8C6239] mb-6 reveal sm:text-4xl">
             Kopi, Ruang, dan Cerita
           </h2>
-          <p className="mx-auto max-w-3xl text-lg opacity-80 reveal">
+          <p className="mx-auto max-w-3xl text-base opacity-80 reveal sm:text-lg">
             Nikmati sudut baca bernuansa vintage, meja komunitas untuk berbagi
             cerita, serta menu klasik yang dikurasi dengan hati. Di sini, setiap
             kunjungan terasa seperti bab baru dalam kisah Anda.
@@ -184,21 +184,21 @@ function HomePage() {
 function StoryPage() {
   return (
     <main className="pt-24">
-      <section className="container mx-auto px-6 py-16">
+      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div className="reveal">
             <p className="text-sm uppercase tracking-[0.4em] text-[#8C6239] mb-3">
               Cerita Kami
             </p>
-            <h1 className="text-4xl font-serif text-[#8C6239] mb-6">
+            <h1 className="text-3xl font-serif text-[#8C6239] mb-6 sm:text-4xl">
               Jejak Aroma dan Kenangan
             </h1>
-            <p className="text-lg leading-relaxed mb-6 opacity-80">
+            <p className="text-base leading-relaxed mb-6 opacity-80 sm:text-lg">
               Kami percaya setiap kopi memiliki kisah. Dari biji yang dipetik
               pada pagi berkabut hingga seduhan yang tiba di meja Anda, semua
               dijaga agar tetap otentik dan jujur.
             </p>
-            <p className="text-lg leading-relaxed opacity-80">
+            <p className="text-base leading-relaxed opacity-80 sm:text-lg">
               Kisah Klasik Kopi tumbuh sebagai rumah kedua bagi mereka yang
               mencari ketenangan dan rasa yang konsisten.
             </p>
@@ -213,8 +213,8 @@ function StoryPage() {
         </div>
       </section>
 
-      <section className="bg-[#EAE0CC] py-20">
-        <div className="container mx-auto px-6">
+      <section className="bg-[#EAE0CC] py-16 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid gap-10 md:grid-cols-3">
             {[
               {
@@ -237,7 +237,7 @@ function StoryPage() {
                 <h3 className="text-xl font-serif text-[#8C6239] mb-3">
                   {item.title}
                 </h3>
-                <p className="opacity-80">{item.desc}</p>
+                <p className="opacity-80 text-sm sm:text-base">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -250,12 +250,12 @@ function StoryPage() {
 function MenuPage() {
   return (
     <main className="pt-24">
-      <section className="container mx-auto px-6 py-16">
+      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16">
         <div className="text-center mb-12">
           <p className="text-sm uppercase tracking-[0.4em] text-[#8C6239] mb-3">
             Menu
           </p>
-          <h1 className="text-4xl font-serif text-[#8C6239] reveal">
+          <h1 className="text-3xl font-serif text-[#8C6239] reveal sm:text-4xl">
             Pilihan Klasik Kami
           </h1>
         </div>
@@ -268,18 +268,20 @@ function MenuPage() {
               <img
                 src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=400&auto=format&fit=crop"
                 alt={item.name}
-                className="w-full h-56 object-cover"
+                className="w-full h-48 object-cover sm:h-56"
               />
-              <div className="p-8">
-                <h3 className="text-2xl font-serif font-bold mb-3">
+              <div className="p-6 sm:p-8">
+                <h3 className="text-xl font-serif font-bold mb-3 sm:text-2xl">
                   {item.name}
                 </h3>
-                <p className="text-md mb-6 opacity-75">{item.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-[#8C6239]">
+                <p className="text-sm mb-6 opacity-75 sm:text-base">
+                  {item.description}
+                </p>
+                <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+                  <span className="text-xl font-bold text-[#8C6239] sm:text-2xl">
                     {item.price}
                   </span>
-                  <button className="bg-[#2C1E16] text-[#F4ECD8] px-5 py-2 rounded-lg hover:bg-[#8C6239] transition">
+                  <button className="bg-[#2C1E16] text-[#F4ECD8] px-4 py-2 rounded-lg text-sm hover:bg-[#8C6239] transition w-full sm:w-auto sm:px-5 sm:text-base">
                     Pesan
                   </button>
                 </div>
@@ -295,22 +297,22 @@ function MenuPage() {
 function PhilosophyPage() {
   return (
     <main className="pt-24">
-      <section className="container mx-auto px-6 py-16">
+      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div className="reveal">
             <p className="text-sm uppercase tracking-[0.4em] text-[#8C6239] mb-3">
               Filosofi Kopi
             </p>
-            <h1 className="text-4xl font-serif text-[#8C6239] mb-6">
+            <h1 className="text-3xl font-serif text-[#8C6239] mb-6 sm:text-4xl">
               Ritual yang Mengikat Waktu
             </h1>
-            <p className="text-lg leading-relaxed mb-6 opacity-80">
+            <p className="text-base leading-relaxed mb-6 opacity-80 sm:text-lg">
               Bagi kami, kopi bukan sekadar minuman — ia adalah ritual yang
               mengikat waktu, cerita, dan orang-orang di sekitarnya. Setiap
               seduhan mengajak Anda berhenti sejenak, bernapas, lalu kembali
               melangkah dengan hati yang hangat.
             </p>
-            <p className="text-lg leading-relaxed opacity-80">
+            <p className="text-base leading-relaxed opacity-80 sm:text-lg">
               Filosofi Kisah Klasik Kopi berakar pada tiga hal: kejujuran rasa,
               kehangatan ruang, dan ketulusan pelayanan. Itulah yang membuat
               setiap cangkir menjadi undangan untuk kembali.
@@ -326,23 +328,23 @@ function PhilosophyPage() {
         </div>
       </section>
 
-      <section className="bg-[#EAE0CC] py-20">
-        <div className="container mx-auto px-6">
+      <section className="bg-[#EAE0CC] py-16 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid gap-8 md:grid-cols-2">
             <div className="reveal rounded-2xl bg-[#F4ECD8] p-8 shadow-lg">
-              <h2 className="text-2xl font-serif text-[#8C6239] mb-4">
+              <h2 className="text-xl font-serif text-[#8C6239] mb-4 sm:text-2xl">
                 Kejujuran Rasa
               </h2>
-              <p className="opacity-80">
+              <p className="opacity-80 text-sm sm:text-base">
                 Setiap resep menjaga karakter biji asli, agar aroma dan rasa
                 yang Anda cicipi tetap jernih dan apa adanya.
               </p>
             </div>
             <div className="reveal rounded-2xl bg-[#F4ECD8] p-8 shadow-lg">
-              <h2 className="text-2xl font-serif text-[#8C6239] mb-4">
+              <h2 className="text-xl font-serif text-[#8C6239] mb-4 sm:text-2xl">
                 Kehangatan Ruang
               </h2>
-              <p className="opacity-80">
+              <p className="opacity-80 text-sm sm:text-base">
                 Ruang yang dirancang seperti ruang keluarga: lampu hangat,
                 tekstur kayu, dan sudut nyaman untuk berlama-lama.
               </p>
@@ -357,16 +359,16 @@ function PhilosophyPage() {
 function NotFound() {
   return (
     <main className="pt-24">
-      <section className="container mx-auto px-6 py-24 text-center">
-        <h1 className="text-4xl font-serif text-[#8C6239] mb-4">
+      <section className="container mx-auto px-4 py-16 text-center sm:px-6 sm:py-24">
+        <h1 className="text-3xl font-serif text-[#8C6239] mb-4 sm:text-4xl">
           Halaman Tidak Ditemukan
         </h1>
-        <p className="opacity-80 mb-8">
+        <p className="opacity-80 mb-8 text-sm sm:text-base">
           Sepertinya halaman yang kamu cari belum tersedia.
         </p>
         <NavLink
           to="/"
-          className="inline-flex items-center justify-center bg-[#8C6239] hover:bg-[#C19A6B] text-[#F4ECD8] px-8 py-3 rounded-full font-semibold transition"
+          className="inline-flex items-center justify-center bg-[#8C6239] hover:bg-[#C19A6B] text-[#F4ECD8] px-6 py-3 rounded-full font-semibold text-sm transition sm:px-8 sm:text-base"
         >
           Kembali ke Beranda
         </NavLink>
