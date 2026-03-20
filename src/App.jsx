@@ -109,7 +109,7 @@ function Footer() {
 
 function HomePage() {
   return (
-    <main className="pt-20">
+    <main className="pt-10 md:pt-20">
       <section className="relative flex min-h-[80vh] items-center justify-center text-center sm:min-h-[88vh] md:h-[92vh]">
         <div className="absolute inset-0 bg-black/60 z-10" />
         <img
@@ -136,7 +136,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-12 sm:px-6 sm:py-24">
+      <section className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-12 sm:px-6 sm:py-24 mobile-panel">
         <div className="md:w-1/2 reveal">
           <h2 className="text-3xl font-serif text-[#8C6239] mb-6 sm:text-4xl">
             Cerita yang Menghangatkan
@@ -163,7 +163,7 @@ function HomePage() {
       </section>
 
       <section className="bg-[#EAE0CC] py-16 sm:py-24">
-        <div className="container mx-auto px-4 text-center sm:px-6">
+        <div className="container mx-auto px-4 text-center sm:px-6 mobile-shell">
           <p className="text-sm uppercase tracking-[0.4em] text-[#8C6239] mb-4">
             Pengalaman
           </p>
@@ -183,8 +183,8 @@ function HomePage() {
 
 function StoryPage() {
   return (
-    <main className="pt-24">
-      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16">
+    <main className="pt-10 md:pt-24">
+      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16 mobile-panel">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div className="reveal">
             <p className="text-sm uppercase tracking-[0.4em] text-[#8C6239] mb-3">
@@ -214,7 +214,7 @@ function StoryPage() {
       </section>
 
       <section className="bg-[#EAE0CC] py-16 sm:py-20">
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="container mx-auto px-4 sm:px-6 mobile-shell">
           <div className="grid gap-10 md:grid-cols-3">
             {[
               {
@@ -249,8 +249,8 @@ function StoryPage() {
 
 function MenuPage() {
   return (
-    <main className="pt-24">
-      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16">
+    <main className="pt-10 md:pt-24">
+      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16 mobile-panel">
         <div className="text-center mb-12">
           <p className="text-sm uppercase tracking-[0.4em] text-[#8C6239] mb-3">
             Menu
@@ -259,7 +259,7 @@ function MenuPage() {
             Pilihan Klasik Kami
           </h1>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10">
           {menuItems.map((item) => (
             <div
               key={item.name}
@@ -296,8 +296,8 @@ function MenuPage() {
 
 function PhilosophyPage() {
   return (
-    <main className="pt-24">
-      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16">
+    <main className="pt-10 md:pt-24">
+      <section className="container mx-auto px-4 py-12 sm:px-6 sm:py-16 mobile-panel">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div className="reveal">
             <p className="text-sm uppercase tracking-[0.4em] text-[#8C6239] mb-3">
@@ -329,7 +329,7 @@ function PhilosophyPage() {
       </section>
 
       <section className="bg-[#EAE0CC] py-16 sm:py-20">
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="container mx-auto px-4 sm:px-6 mobile-shell">
           <div className="grid gap-8 md:grid-cols-2">
             <div className="reveal rounded-2xl bg-[#F4ECD8] p-8 shadow-lg">
               <h2 className="text-xl font-serif text-[#8C6239] mb-4 sm:text-2xl">
@@ -358,8 +358,8 @@ function PhilosophyPage() {
 
 function NotFound() {
   return (
-    <main className="pt-24">
-      <section className="container mx-auto px-4 py-16 text-center sm:px-6 sm:py-24">
+    <main className="pt-10 md:pt-24">
+      <section className="container mx-auto px-4 py-16 text-center sm:px-6 sm:py-24 mobile-panel">
         <h1 className="text-3xl font-serif text-[#8C6239] mb-4 sm:text-4xl">
           Halaman Tidak Ditemukan
         </h1>
@@ -380,12 +380,33 @@ function NotFound() {
 function AppLayout() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [bottomNavVisible, setBottomNavVisible] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const isScrollingUp = currentY < lastY - 6;
+      const isScrollingDown = currentY > lastY + 6;
+
+      if (isScrollingUp) {
+        setBottomNavVisible(true);
+      } else if (isScrollingDown) {
+        setBottomNavVisible(false);
+      }
+
+      lastY = currentY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -410,13 +431,15 @@ function AppLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="bg-[#F4ECD8] text-[#2C1E16] min-h-screen">
-      <Navbar
-        scrolled={scrolled}
-        menuOpen={menuOpen}
-        onToggle={() => setMenuOpen((prev) => !prev)}
-        onClose={() => setMenuOpen(false)}
-      />
+    <div className="bg-[#F4ECD8] text-[#2C1E16] min-h-screen app-shell">
+      <div className="hidden md:block">
+        <Navbar
+          scrolled={scrolled}
+          menuOpen={menuOpen}
+          onToggle={() => setMenuOpen((prev) => !prev)}
+          onClose={() => setMenuOpen(false)}
+        />
+      </div>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cerita" element={<StoryPage />} />
@@ -424,6 +447,78 @@ function AppLayout() {
         <Route path="/filosofi" element={<PhilosophyPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <nav
+        className={`mobile-bottom-nav md:hidden ${
+          bottomNavVisible ? "is-visible" : "is-hidden"
+        }`}
+        aria-label="Navigasi utama"
+      >
+        <NavLink className="mobile-nav-link" to="/">
+          <span className="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path
+                d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5a.5.5 0 0 1-.5-.5V16a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4.5a.5.5 0 0 1-.5.5H5a1 1 0 0 1-1-1v-9.5Z"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+          Beranda
+        </NavLink>
+        <NavLink className="mobile-nav-link" to="/cerita">
+          <span className="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path
+                d="M6 5.5h8a3 3 0 0 1 3 3V19H9a3 3 0 0 0-3 3V5.5Z"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M6 19h8a3 3 0 0 1 3 3"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+          Cerita
+        </NavLink>
+        <NavLink className="mobile-nav-link" to="/menu">
+          <span className="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path
+                d="M4 7h16M4 12h16M4 17h10"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+          Menu
+        </NavLink>
+        <NavLink className="mobile-nav-link" to="/filosofi">
+          <span className="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path
+                d="M12 4.5a5 5 0 0 1 5 5c0 2.4-1.6 3.8-3 4.7-1 .7-1.7 1.4-2 2.3"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M10 19h4"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="12" cy="19.5" r="0.5" fill="currentColor" />
+            </svg>
+          </span>
+          Filosofi
+        </NavLink>
+      </nav>
       <Footer />
     </div>
   );
